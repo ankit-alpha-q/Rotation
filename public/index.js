@@ -116,6 +116,7 @@ const moonMaterial = new THREE.MeshPhongMaterial({
   roughness: 5,
   metalness: 0,
   map: THREE.ImageUtils.loadTexture("texture/moonmap4k.jpg"),
+  bumpMap: THREE.ImageUtils.loadTexture("texture/moonbump4k.jpg"),
   bumpScale: 0.02,
 });
 
@@ -165,6 +166,7 @@ window.addEventListener(
 //animation loop
 const animate = () => {
   requestAnimationFrame(animate);
+  cloud.rotation.y-=0.0002;
   moonPivot.rotation.y -= 0.005;
   moonPivot.rotation.x = 0.5;
   cameraPivot.rotation.y += 0.001;
