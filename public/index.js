@@ -2,6 +2,7 @@ import * as THREE from "/node_modules/three/build/three.module.js";
 import { EffectComposer } from "/node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "/node_modules/three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import gsap from "../node_modules/gsap/index.js"
 
 //global declaration
 let scene;
@@ -13,12 +14,27 @@ const fov = 60;
 const aspect = window.innerWidth / window.innerHeight;
 const near = 0.1;
 const far = 1000;
+const explore = $(".explore");
+var explorer = false;
 
 //camera
 camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.z = 4;
+camera.position.z = 20;
 camera.position.x = 0;
 scene.add(camera);
+
+//explore
+explore.click(() => {
+  if(!gsap.isTweening(camera.position)){
+    gsap.to(camera.position,{
+      duration: 1,
+      z: explorer ? 20 : 4,
+      ease: "power3.inOut",
+    })
+    explore[0].innerHTML = explorer ? "start exploring" : "go back";
+    explorer = !explorer;
+  }
+});
 
 //default renderer
 renderer = new THREE.WebGLRenderer({
@@ -93,7 +109,6 @@ earthMesh.castShadow = true;
 earthMesh.layers.set(0);
 scene.add(earthMesh);
 
-
 //cloud geometry
 const cloudgeometry = new THREE.SphereGeometry(1, 32, 32);
 
@@ -166,7 +181,7 @@ window.addEventListener(
 //animation loop
 const animate = () => {
   requestAnimationFrame(animate);
-  cloud.rotation.y-=0.0002;
+  cloud.rotation.y -= 0.0002;
   moonPivot.rotation.y -= 0.005;
   moonPivot.rotation.x = 0.5;
   cameraPivot.rotation.y += 0.001;

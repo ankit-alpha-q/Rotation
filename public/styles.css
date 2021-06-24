@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700&display=swap");
+
 * {
   margin: 0%;
   padding: 0%;
@@ -6,4 +8,50 @@
 
 body {
   overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.title-container {
+  position: absolute;
+  width: 50%;
+  height: auto;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.title {
+  color: whitesmoke;
+  padding-left: 4rem;
+}
+
+.title h1 {
+  font-family: "Poppins", sans-serif;
+  color: whitesmoke;
+  font-size: 5rem;
+}
+
+.title p {
+  font-family: "Poppins", sans-serif;
+  color: whitesmoke;
+}
+
+.explore {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  background-color: #0072ff;
+  text-transform: uppercase;
+  color: whitesmoke;
 }
